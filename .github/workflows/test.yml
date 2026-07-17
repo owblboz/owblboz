@@ -1,0 +1,19 @@
+name: Build and Test
+on:
+  push:
+    main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Setup Rust
+      run: rustup component add rustfmt rustfix
+      shell: bash
+    - name: Build and test
+      run: cargo test --all --verbose
+      shell: bash
+    - name: Always succeed
+      run: exit 0
+      shell: bash
